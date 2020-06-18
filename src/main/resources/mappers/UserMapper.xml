@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zyh.dao.UserMapper">
+    <resultMap id="UserMap" type="zyh.pojo.User">
+        <id column="id" jdbcType="INTEGER" property="userId"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="roleId" jdbcType="INTEGER" property="roleId"/>
+        <result column="isVip" jdbcType="VARCHAR" property="isVip"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+    </resultMap>
+
+    <select id="userLogin" resultMap="UserMap" parameterType="zyh.pojo.User">
+        select * from cd_user where userName = #{userName} and password = #{password}
+    </select>
+
+    <select id="insertUser" parameterType="User">
+        insert into cd_user (userName, password, roleId, isVip, status) values (#{userName},#{password},#{roleId},#{isVip},#{status})
+    </select>
+</mapper>
